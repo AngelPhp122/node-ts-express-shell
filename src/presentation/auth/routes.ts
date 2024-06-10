@@ -1,10 +1,9 @@
 import { Router } from 'express';
-import { Authroutes } from './auth/routes';
 
 
 
 
-export class AppRoutes {
+export class Authroutes {
 
 
   static get routes(): Router {
@@ -13,8 +12,9 @@ export class AppRoutes {
     
     // Definir las rutas
     // router.use('/api/todos', /*TodoRoutes.routes */ );
-    router.use('api/auth', Authroutes.routes);
-
+    router.post('/login', /*TodoRoutes.routes */);
+    router.post('/register', /*TodoRoutes.routes */);
+    router.get('/validate-email/:token', /*TodoRoutes.routes*/);
 
 
     return router;
@@ -22,4 +22,3 @@ export class AppRoutes {
 
 
 }
-

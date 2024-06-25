@@ -21,6 +21,7 @@ export class Server {
     this.port = port;
     this.publicPath = public_path;
     this.routes = routes;
+    
   }
 
   

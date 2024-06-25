@@ -1,11 +1,21 @@
 import { Request, Response } from "express";
+import { RegisterUserDto } from "../../domain";
+import { AuthService } from "../services/auth.services";
 
 
 export class AuthController {
-    constructor(){}
+    constructor(
+        public readonly authService: AuthService,
 
-    regiterUser = (request: Request, response: Response) => {
-        response.json('registerUser');
+    ){}
+
+    registerUser = (request: Request, response: Response) => {
+        const [error, registerDto] = RegisterUserDto.create(request.body);
+        if(error) return response.status(400).json({error});
+
+       this.authService.registerUser(registerDto!)
+       .then((user)=> response.json(user))
+
     }
 
     loginUser = (request: Request, response: Response) => {

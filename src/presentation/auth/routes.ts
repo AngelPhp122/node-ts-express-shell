@@ -1,5 +1,6 @@
 import { Router } from 'express';
-
+import { AuthController } from './controller';
+import { AuthService } from '../services/auth.services';
 
 
 
@@ -9,11 +10,11 @@ export class Authroutes {
   static get routes(): Router {
 
     const router = Router();
-    
+    const authService = new AuthService();
+    const controller = new AuthController(authService);
     // Definir las rutas
-    // router.use('/api/todos', /*TodoRoutes.routes */ );
-    router.post('/login', /*TodoRoutes.routes */);
-    router.post('/register', /*TodoRoutes.routes */);
+    router.post('/login', );
+    router.post('/register', controller.registerUser);
     router.get('/validate-email/:token', /*TodoRoutes.routes*/);
 
 

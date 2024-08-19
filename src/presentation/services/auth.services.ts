@@ -8,6 +8,17 @@ export class AuthService {
         const existUser = await UserModel.findOne({ email: registerUserDto.email });
         if(existUser) throw CustomError.badRequest('Email already exist');
 
-        return 'todo ok!'
+        try{
+
+            const user = new UserModel(registerUserDto);
+            await user.save();
+
+            return user;
+
+        }catch(error){
+            throw CustomError.internalServer(`${error}`);
+        }
+        
     }
 }
+
